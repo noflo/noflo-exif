@@ -1,0 +1,26 @@
+{
+  "name": "noflo-exif",
+  "description": "NoFlo components for EXIF data extraction from images.",
+  "author": "Vilson Vieira <vilson@void.cc>",
+  "repo": "vilson/noflo-exif",
+  "version": "0.1.0",
+  "keywords": [],
+  "dependencies": {
+    "noflo/noflo": "*"
+  },
+  "remotes": [
+    "https://raw.githubusercontent.com"
+  ],
+  "scripts": [
+    "index.js",
+    "components/ExtractEXIF.coffee"
+  ],
+  "json": [
+    "component.json"
+  ],
+  "noflo": {
+    "components": {
+      "ExtractEXIF": "components/ExtractEXIF.coffee"
+    }
+  }
+}

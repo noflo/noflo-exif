@@ -23,7 +23,17 @@ exports.getComponent = ->
       new ExifImage
         image: input
         (err, data) ->
-          return callback err if err
+          # If image is unsupported or other error, send empty obj instead of
+          # failing
+          if err
+            out.send {}
+            do callback
+            return
+          # If image has empty EXIF data, send empty obj
+          if Object.keys(data.exif).length == 0
+            out.send {}
+            do callback
+            return
           # Strip out buffers
           for high_key,high_value of data
             for low_key,low_value of high_value

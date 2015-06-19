@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/automata/noflo-exif.git"
+    "url": "git://github.com/noflo/noflo-exif.git"
   },
   "licenses": [
     {

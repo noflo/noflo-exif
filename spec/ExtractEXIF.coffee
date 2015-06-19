@@ -84,3 +84,12 @@ describe 'ExtractEXIF component', ->
         
       filePath = 'spec/fixtures/with-exif.jpg'
       ins.send filePath
+
+    it 'should strip buffers from EXIF data', (done) ->
+      out.on 'data', (data) ->
+        chai.expect(data.exif['ExifVersion']).to.not.exists
+        chai.expect(data.interoperability['InteropVersion']).to.not.exists
+        done()
+
+      filePath = 'spec/fixtures/with-exif.jpg'
+      ins.send filePath

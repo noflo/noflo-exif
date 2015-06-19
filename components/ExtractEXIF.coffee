@@ -24,7 +24,11 @@ exports.getComponent = ->
         image: input
         (err, data) ->
           return callback err if err
-          # TODO: Strip buffers and check if there's data
+          # Strip out buffers
+          for high_key,high_value of data
+            for low_key,low_value of high_value
+              if Buffer.isBuffer low_value
+                delete data[high_key][low_key]
           out.send data
           do callback
     catch error

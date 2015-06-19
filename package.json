@@ -1,7 +1,7 @@
 {
   "name": "noflo-exif",
   "description": "NoFlo components for EXIF data extraction from images.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Vilson Vieira",
     "email": "vilson@void.cc",
@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git://github.com/noflo/noflo-exif.git"
   },
+  "license": "MIT",
   "licenses": [
     {
       "type": "MIT",

@@ -34,37 +34,28 @@ describe 'ExtractEXIF component', ->
       chai.expect(c.outPorts.error).to.be.an 'object'
 
   describe 'when passed a missing file path', ->
-    it 'should send an error', (done) ->
-      error.on 'data', (data) ->
+    it 'should send an empty object', (done) ->
+      out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
+        chai.expect(data).to.deep.equal {}
         done()
       ins.send 'nonono'
 
   describe 'when passed a non-JPEG image', ->
-    it 'should send an error', (done) ->
-      error.on 'data', (data) ->
+    it 'should send an empty object', (done) ->
+      out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
+        chai.expect(data).to.deep.equal {}
         done()
         
       filePath = 'spec/fixtures/no-jpeg.png'
       ins.send filePath
 
   describe 'when passed an image without EXIF data', ->
-    it 'should extract empty EXIF data', (done) ->
+    it 'should send an empty object', (done) ->
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
-        chai.expect(data.image).to.exists
-        chai.expect(data.image).to.deep.equal {}
-        chai.expect(data.thumbnail).to.exists
-        chai.expect(data.thumbnail).to.deep.equal {}
-        chai.expect(data.exif).to.exists
-        chai.expect(data.exif).to.deep.equal {}
-        chai.expect(data.gps).to.exists
-        chai.expect(data.gps).to.deep.equal {}
-        chai.expect(data.interoperability).to.exists
-        chai.expect(data.interoperability).to.deep.equal {}
-        chai.expect(data.makernote).to.exists
-        chai.expect(data.makernote).to.deep.equal {}
+        chai.expect(data).to.deep.equal {}
         done()
         
       filePath = 'spec/fixtures/no-exif.jpg'

@@ -1,5 +1,13 @@
 language: node_js
 node_js:
-  - 0.12
+- 0.12
 before_script:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
+deploy:
+  provider: npm
+  email: vilson@void.cc
+  api_key:
+    secure: PAX+S1vjlMINaej4EC8E7tPyedscfA1YEPCGqxFqeO/OZ/ediMi3kHTBwlmwcPRdkvA4LtdMkFJEvQ4zGSTZvQzK/djK+If1csApNFPDy+ACUkSsxG6ZGSHPBPJl2LGrrMS3dzkHv36keR7YU3MxmuelgdT6cKz4hUg1GncKve5MEsciEGfiN0hC5PuQja3eAqBB2giwPrqLiVDaOFQKILlnLKa43huu2Xfd3qJ8kE/qv8InkMI128uV1+2B4tJXtY8jkmP47SQ9kv6uQb9TdHY7ajSo+Z3F5bHR2On7O9WJzVZKAAP4n0LPyA8iPDCdRiq6O4LkVSKMAKsqvY2pOyKhC57FngXJ+UNnQMYgfi+mg9JQ3JLGbnvpdLqt1HJ38jLQNbMMmEJbqy6AdrWNIoJivWZzhhTsxZt51rWel7CiJC+1T1N1nqB08/uTguU9qx62qu6t1GX6ImVWseQDnSDGrUVTEVfSDDotNrlqKojxASCehembSn7ya/YttYA+GHdfD+YbuxrzbroE2G+YI/JVIYl3OMPxFoTWt5HyAZdLX9mms02qc83gm4j8j34jHMkpYCr+ZVm1jHwW7F5WU7B1QHzJOjFeHV/Z4s1QwmHXq0BoxGCDB+ZkQoBp7UowG6mvOxwGPv9gw/qIzv4CI5hlIsGhLKT9p9H1fLrSFhM=
+  on:
+    tags: true
+    repo: noflo/noflo-exif

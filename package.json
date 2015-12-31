@@ -1,7 +1,7 @@
 {
   "name": "noflo-exif",
   "description": "NoFlo components for EXIF data extraction from images.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Vilson Vieira",
     "email": "vilson@void.cc",

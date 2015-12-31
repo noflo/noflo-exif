@@ -47,7 +47,7 @@ describe 'ExtractEXIF component', ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data).to.deep.equal {}
         done()
-        
+
       filePath = 'spec/fixtures/no-jpeg.png'
       ins.send filePath
 
@@ -57,7 +57,7 @@ describe 'ExtractEXIF component', ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data).to.deep.equal {}
         done()
-        
+
       filePath = 'spec/fixtures/no-exif.jpg'
       ins.send filePath
 
@@ -72,7 +72,7 @@ describe 'ExtractEXIF component', ->
         chai.expect(data.interoperability).to.exists
         chai.expect(data.makernote).to.exists
         done()
-        
+
       filePath = 'spec/fixtures/with-exif.jpg'
       ins.send filePath
 
@@ -83,4 +83,28 @@ describe 'ExtractEXIF component', ->
         done()
 
       filePath = 'spec/fixtures/with-exif.jpg'
+      ins.send filePath
+
+  describe 'when passed an image from Olympus camera with bad makernote', ->
+    it 'should extract EXIF data', (done) ->
+      out.on 'data', (data) ->
+        chai.expect(data).to.be.an 'object'
+        chai.expect(data.image).to.exists
+        chai.expect(data.thumbnail).to.exists
+        chai.expect(data.exif).to.exists
+        chai.expect(data.gps).to.exists
+        chai.expect(data.interoperability).to.exists
+        chai.expect(data.makernote).to.exists
+        done()
+
+      filePath = 'spec/fixtures/evil.jpg'
+      ins.send filePath
+
+    it 'should strip buffers from EXIF data', (done) ->
+      out.on 'data', (data) ->
+        chai.expect(data.exif['ExifVersion']).to.not.exists
+        chai.expect(data.interoperability['InteropVersion']).to.not.exists
+        done()
+
+      filePath = 'spec/fixtures/evil.jpg'
       ins.send filePath

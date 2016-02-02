@@ -124,11 +124,18 @@ describe 'ExtractEXIF component', ->
       filePath = 'spec/fixtures/evil2.jpg'
       ins.send filePath
 
-    it 'should strip buffers from EXIF data', (done) ->
+  describe 'when passed another image with corrupted data', ->
+    it 'should extract EXIF data', (done) ->
       out.on 'data', (data) ->
-        chai.expect(data.exif['ExifVersion']).to.not.exists
-        chai.expect(data.interoperability['InteropVersion']).to.not.exists
+        chai.expect(data).to.be.an 'object'
+        chai.expect(data.image).to.exists
+        chai.expect(data.thumbnail).to.exists
+        chai.expect(data.exif).to.exists
+        chai.expect(data.gps).to.exists
+        chai.expect(data.interoperability).to.exists
+        chai.expect(data.makernote).to.exists
         done()
 
-      filePath = 'spec/fixtures/evil2.jpg'
+      filePath = 'spec/fixtures/crash3.jpg'
       ins.send filePath
+

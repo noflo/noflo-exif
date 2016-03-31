@@ -3,13 +3,15 @@ ExifImage = require('exif').ExifImage
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.icon = 'cog'
+  c.icon = 'image'
   c.description = 'Extract EXIF data from a file or buffer'
 
   c.inPorts.add 'in',
     datatype: 'object'
+    description: 'Image filepath or buffer'
   c.outPorts.add 'out',
     datatype: 'string'
+    description: 'Extracted EXIF data'
   c.outPorts.add 'error',
     datatype: 'object'
 

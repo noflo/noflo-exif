@@ -34,11 +34,14 @@ exports.getComponent = ->
             out.send {}
             do callback
             return
-          # Strip out buffers
           for high_key,high_value of data
             for low_key,low_value of high_value
+              # Strip out buffers
               if Buffer.isBuffer low_value
                 delete data[high_key][low_key]
+              # Sanitize against \u0000
+              if typeof low_value is 'string'
+                data[high_key][low_key] = low_value.replace /\\u0000/g, ''
           out.send data
           do callback
     catch error

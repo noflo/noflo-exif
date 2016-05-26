@@ -85,6 +85,22 @@ describe 'ExtractEXIF component', ->
       filePath = 'spec/fixtures/with-exif.jpg'
       ins.send filePath
 
+  describe 'when passed an image with EXIF data containing null codepoints', ->
+    it 'should extract a sanitized data', (done) ->
+      out.on 'data', (data) ->
+        chai.expect(data).to.be.an 'object'
+        chai.expect(data.image).to.exists
+        chai.expect(data.image.Model).to.be.equal 'Evilstringfor a model'
+        chai.expect(data.thumbnail).to.exists
+        chai.expect(data.exif).to.exists
+        chai.expect(data.gps).to.exists
+        chai.expect(data.interoperability).to.exists
+        chai.expect(data.makernote).to.exists
+        done()
+
+      filePath = 'spec/fixtures/evil-unicode.jpg'
+      ins.send filePath
+
   describe 'when passed an image from Olympus camera with bad makernote', ->
     it 'should extract EXIF data', (done) ->
       out.on 'data', (data) ->
@@ -138,4 +154,3 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/crash3.jpg'
       ins.send filePath
-

@@ -3,7 +3,7 @@
   "description": "NoFlo components for EXIF data extraction from images.",
   "author": "Vilson Vieira <vilson@void.cc>",
   "repo": "noflo/noflo-exif",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "keywords": [],
   "dependencies": {
     "noflo/noflo": "*"

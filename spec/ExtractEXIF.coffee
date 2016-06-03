@@ -1,6 +1,8 @@
 noflo = require 'noflo'
 chai = require 'chai' unless chai
+path = require 'path'
 ExtractEXIF = require '../components/ExtractEXIF.coffee'
+baseDir = path.resolve __dirname, '../'
 
 describe 'ExtractEXIF component', ->
   c = null
@@ -8,14 +10,19 @@ describe 'ExtractEXIF component', ->
   out = null
   error = null
   beforeEach (done) ->
-    c = ExtractEXIF.getComponent()
-    ins = noflo.internalSocket.createSocket()
-    out = noflo.internalSocket.createSocket()
-    error = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach ins
-    c.outPorts.out.attach out
-    c.outPorts.error.attach error
-    done()
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'exif/ExtractEXIF', (err, instance) ->
+      instance = err unless instance
+      c = instance
+      ins = noflo.internalSocket.createSocket()
+      out = noflo.internalSocket.createSocket()
+      error = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach ins
+      c.outPorts.out.attach out
+      c.outPorts.error.attach error
+      done()
+
   afterEach (done) ->
     c.inPorts.in.detach ins
     c.outPorts.out.detach out

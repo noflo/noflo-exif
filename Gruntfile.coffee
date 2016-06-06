@@ -22,14 +22,30 @@ module.exports = ->
       components: ['components/*.coffee']
       specs: ['spec/*.coffee']
 
+    # NoFlo lint
+    noflo_lint:
+      options:
+        description: 'error'
+        icon: 'error'
+        port_descriptions: 'error'
+        asynccomponent: 'error'
+        wirepattern: 'warn'
+        process_api: 'warn'
+        legacy_api: 'warn'
+      files: [
+        'components/*.coffee'
+      ]
+
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-mocha-test'
   @loadNpmTasks 'grunt-coffeelint'
+  @loadNpmTasks 'grunt-noflo-lint'
 
   # Our local tasks
   @registerTask 'test', 'Build NoFlo and run automated tests', (target = 'all') =>
     @task.run 'coffeelint'
+    @task.run 'noflo_lint'
     @task.run 'mochaTest'
 
   @registerTask 'default', ['test']

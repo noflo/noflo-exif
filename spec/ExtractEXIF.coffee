@@ -47,6 +47,7 @@ describe 'ExtractEXIF component', ->
         chai.expect(data).to.deep.equal {}
         done()
       ins.send 'nonono'
+      ins.disconnect()
 
   describe 'when passed a non-JPEG image', ->
     it 'should send an empty object', (done) ->
@@ -57,6 +58,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/no-jpeg.png'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed an image without EXIF data', ->
     it 'should send an empty object', (done) ->
@@ -67,6 +69,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/no-exif.jpg'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed an image with EXIF data', ->
     it 'should extract EXIF data', (done) ->
@@ -82,6 +85,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/with-exif.jpg'
       ins.send filePath
+      ins.disconnect()
 
     it 'should strip buffers from EXIF data', (done) ->
       out.on 'data', (data) ->
@@ -91,6 +95,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/with-exif.jpg'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed an image with EXIF data containing null codepoints', ->
     it 'should extract a sanitized data', (done) ->
@@ -107,6 +112,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/evil-unicode.jpg'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed an image from Olympus camera with bad makernote', ->
     it 'should extract EXIF data', (done) ->
@@ -122,6 +128,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/evil.jpg'
       ins.send filePath
+      ins.disconnect()
 
     it 'should strip buffers from EXIF data', (done) ->
       out.on 'data', (data) ->
@@ -131,6 +138,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/evil.jpg'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed an image with corrupted data', ->
     it 'should extract EXIF data', (done) ->
@@ -146,6 +154,7 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/evil2.jpg'
       ins.send filePath
+      ins.disconnect()
 
   describe 'when passed another image with corrupted data', ->
     it 'should extract EXIF data', (done) ->
@@ -161,3 +170,4 @@ describe 'ExtractEXIF component', ->
 
       filePath = 'spec/fixtures/crash3.jpg'
       ins.send filePath
+      ins.disconnect()

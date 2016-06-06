@@ -1,6 +1,8 @@
 noflo = require 'noflo'
 ExifImage = require('exif').ExifImage
 
+# @runtime noflo-nodejs
+
 exports.getComponent = ->
   c = new noflo.Component
   c.icon = 'image'

@@ -18,7 +18,6 @@ exports.getComponent = ->
     description: 'Extracted EXIF data'
   c.outPorts.add 'error',
     datatype: 'object'
-    required: false
     description: 'Errors'
 
   c.process (input, output) ->

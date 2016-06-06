@@ -16,6 +16,7 @@ exports.getComponent = ->
     description: 'Extracted EXIF data'
   c.outPorts.add 'error',
     datatype: 'object'
+    description: 'Errors'
 
   noflo.helpers.WirePattern c,
     in: 'in'

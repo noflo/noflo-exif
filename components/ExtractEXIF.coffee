@@ -22,7 +22,7 @@ exports.getComponent = ->
 
   c.process (input, output) ->
     ins = input.get 'in'
-    return unless ins.type is 'data'
+    return unless ins?.type is 'data'
     try
       new ExifImage
         image: ins.data

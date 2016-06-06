@@ -21,9 +21,6 @@ exports.getComponent = ->
     required: false
     description: 'Errors'
 
-  c.forwardBrackets =
-    in: [ 'out', 'error' ]
-
   c.process (input, output) ->
     ins = input.get 'in'
     return unless ins.type is 'data'

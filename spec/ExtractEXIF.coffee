@@ -151,12 +151,6 @@ describe 'ExtractEXIF component', ->
     it 'should extract EXIF data', (done) ->
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
-        chai.expect(data.image).to.exist
-        chai.expect(data.thumbnail).to.exist
-        chai.expect(data.exif).to.exist
-        chai.expect(data.gps).to.exist
-        chai.expect(data.interoperability).to.exist
-        chai.expect(data.makernote).to.exist
         done()
 
       filePath = 'spec/fixtures/crash3.jpg'
